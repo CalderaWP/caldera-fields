@@ -3,7 +3,7 @@
     "description": "form/input fields system for forms",
     "type": "library",
     "keywords": [
-        "wordpress", "fields, form fields, caldera forms"
+        "wordpress", "fields"
     ],
     "license": "GPL-2.0+",
     "authors": [
