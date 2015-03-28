@@ -1,0 +1,25 @@
+{
+    "name": "calderawp/fields",
+    "description": "form/input fields system for forms",
+    "type": "library",
+    "keywords": [
+        "wordpress", "fields, form fields, caldera forms"
+    ],
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "David Cramer",
+            "homepage": "http://cramer.co.za",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "calderawp/magic-tags": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "calderawp\\input\\": "src"
+        }
+    }
+}
