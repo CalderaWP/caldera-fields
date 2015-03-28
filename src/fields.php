@@ -517,7 +517,7 @@ class fields {
 	 * @since 1.0.0
 	 * @param string $type field type slug
 	 *
-	 * @return array|WP_Error $field structure of requested field or error object
+	 * @return array|object $field structure of requested field or error object
 	 */
 	public function get_field_type( $type ) {
 
@@ -705,7 +705,7 @@ class fields {
 	 * @param string $type field type to render
 	 * @param array $config field config structure
 	 *
-	 * @return string|wp_error rendered html string or wp_error object
+	 * @return string rendered html string
 	 */
 	public function render_field( $type, $config = array() ) {
 
