@@ -47,6 +47,15 @@ class fields {
 	protected $text_domain = 'caldera-fields';
 
 	/**
+	 * magic tags
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var      object
+	 */
+	protected $magic_tags;
+
+	/**
 	 * registered fields list.
 	 *
 	 * @since 1.0.0
@@ -63,7 +72,7 @@ class fields {
 	 * @var      string
 	 */
 	public $version = '1.0.0';
-
+	
 	/**
 	 * Constructor for class. Sets up the default filters.
 	 */
@@ -508,7 +517,7 @@ class fields {
 	 * @since 1.0.0
 	 * @param string $type field type slug
 	 *
-	 * @return array $field structure of requested field or error object
+	 * @return array|WP_Error $field structure of requested field or error object
 	 */
 	public function get_field_type( $type ) {
 
@@ -664,12 +673,6 @@ class fields {
 			"wrapper_after"		=>	'</div>',
 		) );
 
-
-		/*// add error
-		if(!empty($field_errors[$config['id']])){
-			$field_structure['field_caption'] = "<span class=\"" . implode(' ', $field_classes['field_caption'] ) . "\">" . $field_errors[$config['id']] . "</span>\r\n";
-		}*/
-
 		// apply value 
 		if( isset( $field['value'] ) ){
 			$field_structure['field_value'] = $this->magic_tags->do_magic_tag( $field['config']['default'] );
@@ -724,10 +727,6 @@ class fields {
 		// get field structure
 		$field_structure = $this->get_field_structure( $field, $config );
 
-		// add error class
-		if(!empty($field_errors[$config['id']])){
-			$field_wrapper_class .= " " . implode(' ',$field_classes['field_error']);
-		}
 		// set field class
 		$field_class = implode(' ', $field_structure['field_classes']['field']);
 
@@ -761,15 +760,10 @@ class fields {
 		 * @since 1.0.0
 		 */
 		$field_html = apply_filters( 'caldera_fields_render_field_type-' . $field['type'], $field_html, $field, $config );
-		//$field_html = apply_filters( 'caldera_fields_render_field_slug-' . $field['slug'], $field_html, $field, $config );
 
 		// conditional wrapper
 		if(!empty($field['conditions']['group']) && !empty($field['conditions']['type'])){
-			
-			// render conditions check- for magic tags since at this point all field data will be null
-			//if(!self::check_condition($field['conditions'], $form)){
-			//	dump($field['conditions'],0);
-			//}
+
 
 			// wrap it up
 			$conditions_templates[$config['id']] = "<script type=\"text/html\" id=\"conditional-" . $config['id'] . "-tmpl\">\r\n" . $field_html . "</script>\r\n";
